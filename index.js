@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
-const port = process.env.port || 8080;
+const port = process.env.port || 80;
 
 app.get('/', (req, res) => {
-  res.send('Hello World! Ich laufe auf ' + process.env.ENV + ' mit dem Namen: ' + process.env.NAME)
+  res.send('Hello World!')
 })
 
 app.listen(port, () => {
