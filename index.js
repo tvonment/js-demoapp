@@ -7,7 +7,7 @@ const axios = require('axios');
 
 app.get('/', async (req, res) => {
   let authData = axios
-    .get('https://example.com/todos')
+    .get('/.auth/me')
     .then(res => {
       console.log(`statusCode: ${res.status}`);
       return res
