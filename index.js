@@ -3,8 +3,9 @@ const app = express()
 const port = process.env.PORT || 80;
 
 
-app.get('/', (req, res) => {
-  let authData = fetch(".auth/me");
+app.get('/', async (req, res) => {
+  let authDataResponse = await fetch("/.auth/me");
+  authData = await authDataResponse.json();
   res.send(authData)
 })
 
