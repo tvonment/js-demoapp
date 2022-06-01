@@ -1,15 +1,23 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 8080;
+const axios = require('axios');
+
+
 
 app.get('/', async (req, res) => {
-  try {
-    let authDataResponse = await fetch("/.auth/me");
-    let authData = await authDataResponse.json();
+  let authData = axios
+    .get('https://example.com/todos')
+    .then(res => {
+      console.log(`statusCode: ${res.status}`);
+      return res
+    })
+    .catch(error => {
+      console.log(`error:`);
+      console.error(error);
+    });
+    console.log("AuthData: ", authData);
     res.send(authData)
-  } catch(e) {
-    res.status(500).send(e);
-  }
 })
 
 app.listen(port, () => {
