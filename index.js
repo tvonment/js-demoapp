@@ -1,23 +1,11 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 const port = process.env.PORT || 8080;
 const axios = require('axios');
 
-
-
 app.get('/', async (req, res) => {
-  let authData = axios
-    .get('/.auth/me')
-    .then(res => {
-      console.log(`statusCode: ${res.status}`);
-      return res
-    })
-    .catch(error => {
-      console.log(`error:`);
-      console.error(error);
-    });
-    console.log("AuthData: ", authData);
-    res.send(authData)
+  let authDataRes = await axios.get('/.auth/me')
+  res.send(authDataRes.data);
 })
 
 app.listen(port, () => {
