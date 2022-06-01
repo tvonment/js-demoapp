@@ -2,8 +2,10 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 80;
 
+let authData = fetch(".auth/me");
+
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send(authData)
 })
 
 app.listen(port, () => {
