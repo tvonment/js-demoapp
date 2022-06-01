@@ -1,12 +1,15 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 80;
-
+const port = process.env.PORT || 8080;
 
 app.get('/', async (req, res) => {
-  let authDataResponse = await fetch("/.auth/me");
-  authData = await authDataResponse.json();
-  res.send(authData)
+  try {
+    let authDataResponse = await fetch("/.auth/me");
+    let authData = await authDataResponse.json();
+    res.send(authData)
+  } catch(e) {
+    res.status(500).send(e);
+  }
 })
 
 app.listen(port, () => {
